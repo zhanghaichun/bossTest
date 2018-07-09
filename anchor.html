@@ -23,44 +23,56 @@
 			最佳实践： 伪类使用一个冒号表示， :hover, :link, :first-of-type
 				伪元素使用两个冒号表示， ::before, ::after, ::first-line, ::first-letter
 				
-			对于浏览器的默认样式： Chrome 是 user agent stylesheet, firefox 是 preference stylesheet.
+			对于浏览器的默认样式： Chrome 下是 user agent stylesheet, Firefox 下是 preference stylesheet.
+			
+			对于继承属性来说也不是所有的属性都能够继承，比如说 margin,padding, border, background 这样的属性是不能继承的。
+			字体的相关属性倒是可以继承， 比如说 color, font-family, font-size等。
 				
 		*/
 		body {
-			font-family: fantasy;
+			font-family: "arial, helvetica, sans-serif";
 			font-size: 14px;
 			background-color: #454545;
 			color: white;
 		}
 		
-		.first {
-			width: 200px;
-			height: 200px;
-			background: red;
+		.page-container {
+			width: 900px;
+			margin: auto;
 		}
 		
-		.first:before {
-			content: '';
-			display: inline-block;
-			width: 20px;
-			height: 20px;
-			background-color: black;
-		}
-
-		.second {
-			width: 200px;
-			/*height: 3000px;*/
-			background: green;
-			
-			cursor: auto;
+		.page-title {
+			color: #0000FF;
 		}
 		
-		.first-link::before {
-			content: '';
+		article > header {
+			text-align: center;
+		}
+		
+		article > section {
+			padding: 10px;
+			box-shadow: 0 0 15px 7px black inset;
+			background-color: #622e8c;
+			border-radius: 5px;
+		}
+		
+		.anchors ul li {
 			display: inline-block;
-			width: 20px;
-			height: 30px;
-			background-color: pink;
+			list-style: none;
+		}
+		
+		.anchorToTop {
+			padding: 6px 10px;
+			border: 1px solid #080808 ;
+			background-color: #003EFF;
+			color: white;
+			text-decoration: none;
+			border-radius: 3px;
+		}
+		
+		footer {
+			margin-top: 15px;
+			margin-bottom: 15px;
 		}
 		
 		/* 下面是 <a/> 标签的默认样式
@@ -86,29 +98,110 @@
 <body>
 	
 	<!--
-		这个实例主要是使用锚点来实现位置跳转
-		但是里面的标签可能需要使用最新的HTML5标签。
+		这个实例主要是实现锚点位置跳转的。
 		
-		锚点跳转到的地方是页面的最上方。
 		锚点的设置方式： 一个元素设置了id属性， 另一个<a/> 元素设置 href="#元素id属性的值"
 		
 		例如： <div class="first" id="one"></div>
 		
-		那么 <a href="#one">跳转</a> 就会跳转到 id 属性值为 "one" 的元素。元素显示的位置是页面顶端。
+		那么 <a href="#one">跳转</a> 就会跳转到 id 属性值为 "one" 的元素
+		
+		在HTML5 中：
+			<a href="#"></a>
+			<a href="#top"></a>
+		这两种a标签的写法都表示跳转到页面顶端。
+		
+		
 	-->
 	
-	<div class="first" id="">This is good</div>
+	<!--浏览器中对于a链接标签是有自定义的颜色的，例如 Chrome 浏览器中使用 a:-webkit-any-link 伪类
+	来给链接添加默认样式的， 而默认的样式其中一项就是包含默认的字体颜色。
+	
+	同样对于 article, nav, section, header 等元素中的 h1-h6 标签的样式也做了规定。
+	-->
+	
+	<section class="page-container">
+		<h2 class="page-title">锚点定位</h2>
+		<section class="anchors">
+			<nav>
+				<ul>
+					<li><a href="#chrome"><img src="img/browers/chrome.jpg" alt=""></a></li>
+					<li><a href="#firefox"><img src="img/browers/firefox.jpg" alt=""></a></li>
+					<li><a href="#safari"><img src="img/browers/safari.jpg" alt=""></a></li>
+				</ul>
+			</nav>
+			
+			<article id="chrome">
+				<header><h1>Google Chrome</h1></header>
+				<section>
+						<p>
+							Google Chrome是一款由Google公司开发的网页浏览器，该浏览器基于其他开源软件撰写，包括WebKit，目标是提升稳定性、
+							速度和安全性，并创造出简单且有效率的使用者界面。
+						</p>
 
-	<div class="second">this is bad</div>
-	
-	<!--浏览器中对于a链接标签是有自定义的颜色的，例如 Chrome 浏览器中使用 a:-webkit-any-link 
-	来给链接添加默认样式的， 而默认的样式其中一项就是包含默认的字体颜色。-->
-
-	<a href="#aaa" class="first-link">点击我跳到页面顶端</a>
-	
-	<a href="#aaa">点击我跳到页面底端</a>
-	
-	<h3>标题</h3>
+						<p>
+							软件的名称是来自于称作Chrome的网络浏览器GUI（图形使用者界面）。软件的beta测试版本在2008年9月2日发布，提供
+							50种语言版本，有Windows、OS X、Linux、Android、以及iOS版本提供下载。 [1]  谷歌将在谷歌浏览器Chrome上推出“小程
+							序”增强型网页应用（ Progressive Web Apps，简称 PWAs）
+						</p>
+				</section>
+			</article>
+			
+			<article id="firefox">
+				<header><h1>Mozilla Firefox</h1></header>
+				<section>
+						<p>
+							Mozilla Firefox，中文俗称“火狐”（正式缩写为Fx或fx，非正式缩写为MF），是一个自由及开放源代码的网页浏览器，使用
+							Gecko排版引擎，支持多种操作系统，如Windows、Mac OS X及GNU/Linux等。该浏览器提供了两种版本，普通版和
+							ESR（Extended Support Release，延长支持）版，ESR版本是 Mozilla 专门为那些无法或不愿每隔六周就升级一次的企业打
+							造。Firefox ESR 版的升级周期为 42 周，而普通 Firefox 的升级周期为 6 周。
+						</p>
+						
+						<p>
+							根据2013年8月浏览器统计数据，Firefox在全球网页浏览器市占率76%至81%，用户数在各网页浏览器中排名第三，全球估
+							计有6450万位用户。在印度尼西亚、德国和波兰的占有率最高，分别为97.84%、86.41%和84.31%。
+						</p>
+						
+						<p>
+							自Firefox 29起，浏览器界面有很大程度改变。
+						</p>
+						
+						<p>
+							由于该浏览器开放了源代码，因此还有一些第三方编译版供使用。如pcxFirefox，苍月浏览器，tete009等.
+						</p>
+						
+						<p>
+							根据英国防病毒公司Sophos的最新调查数据显示，Firefox连续三年成为互联网用户最受信赖的浏览器
+						</p>
+				</section>
+			</article>
+			
+			<article id="safari">
+				<header><h1>Safari</h1></header>
+				<section>
+						<p>
+							Safari是苹果计算机的操作系统Mac OS中的浏览器，使用了KDE的KHTML作为浏览器的运算核心。Safari 是一款浏览器、
+							一个平台，也是对锐意创新的公开邀请。无论在 Mac、PC 或 iPod touch 上运行，Safari 都可提供极致愉悦的网络体验方式，更
+							不断地改写浏览器的定义。
+						</p>
+						
+						<p>
+							Safari,苹果计算机的操作系统Mac OS中浏览器，用来取代之前的Internet Explorer for Mac。Safari使用了KDE的KHTML作
+							为浏览器的计算核心。 该浏览器已支持Windows平台，但是与运行在Mac OS X上的safari相比，有些功能出现丢失。Safari也是
+							iPhone手机、iPod Touch、iPad平板电脑中iOS指定默认浏览器。Safari 以惊人速度渲染网页。与 Mac、PC 及 iPod 
+							touch、iPhone、iPad完美兼容。让最爱网站一目了然。聪明的它还会检查拼写和语法。
+						</p>
+				</section>
+			</article>
+			
+			
+		</section>
+		
+		<footer>
+			<a href="#" class="anchorToTop">跳转到页面顶端#</a>  
+			<a href="#top" class="anchorToTop">跳转到页面顶端#top</a>
+		</footer>
+	</section>
 	
 </body>
 </html>
