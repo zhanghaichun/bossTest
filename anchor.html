@@ -4,10 +4,30 @@
 	<meta charset="UTF-8">
 	<title>Anchor Test</title>
 	<style>
+		/* 
+			CSS 样式如何层叠：（优先级从低到高）
+				4，浏览器默认样式
+				3，外部样式
+				2，文档内嵌样式
+				1，元素内嵌样式
+				
+			CSS 选择器的特殊性：（优先级从低到高）
+				6，继承属性
+				5，结合符合通配符
+				4，元素选择器和伪元素选择器
+				3，类选择器和伪类选择器
+				2，id 选择器
+				1，内联样式
+				0，重要性声明
+			
+			最佳实践： 伪类使用一个冒号表示， :hover, :link, :first-of-type
+				伪元素使用两个冒号表示， ::before, ::after, ::first-line, ::first-letter
+				
+		*/
 		body {
 			font-family: fantasy;
 			font-size: 14px;
-			/*background-color: #454545;*/
+			background-color: #454545;
 			color: white;
 		}
 		
@@ -16,6 +36,14 @@
 			height: 200px;
 			background: red;
 		}
+		
+		.first:before {
+			content: '';
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background-color: black;
+		}
 
 		.second {
 			width: 200px;
@@ -23,6 +51,14 @@
 			background: green;
 			
 			cursor: auto;
+		}
+		
+		.first-link::before {
+			content: '';
+			display: inline-block;
+			width: 20px;
+			height: 30px;
+			background-color: pink;
 		}
 		
 		/* 下面是 <a/> 标签的默认样式
@@ -59,14 +95,14 @@
 		那么 <a href="#one">跳转</a> 就会跳转到 id 属性值为 "one" 的元素。元素显示的位置是页面顶端。
 	-->
 	
-	<div class="first" id=""></div>
+	<div class="first" id="">This is good</div>
 
-	<div class="second"></div>
+	<div class="second">this is bad</div>
 	
 	<!--浏览器中对于a链接标签是有自定义的颜色的，例如 Chrome 浏览器中使用 a:-webkit-any-link 
 	来给链接添加默认样式的， 而默认的样式其中一项就是包含默认的字体颜色。-->
 
-	<a href="#aaa">点击我跳到页面顶端</a>
+	<a href="#aaa" class="first-link">点击我跳到页面顶端</a>
 	
 	<a href="#aaa">点击我跳到页面底端</a>
 	
