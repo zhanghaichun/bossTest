@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+</head>
+<body>
+<p id="demo">点击按钮获取您当前坐标（可能需要比较长的时间获取）：</p>
+<button onclick="getLocation()">点我</button>
+<a href="javascript:getLocation()">good</a>
+
+<input type="hidden" id="lng-lat">
+
+<script>
+var x=document.getElementById("demo");
+
+"43.6531398,-79.3814827"
+var global_service = "12346";
+function getLocation(service) {
+    global_service = service;
+    if (navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(returnedPositon,function(error){
+            console.log(error.code);
+        });
+
+    }
+    else
+    {
+        x.innerHTML="该浏览器不支持获取地理位置。";
+    }
+}
+
+function returnedPositon(position){
+   
+   console.log(position.coords.longitude + ',' + position.coords.latitude);
+   var lng = position.coords.longitude.toFixed(7);
+   var lat = position.coords.latitude.toFixed(7);
+
+   var lng_lat = lat + "," + lng;
+   
+  window.location = "/the-resource-center/?categories="+ lobal_service + "&latlng=" + lng_lat + "&sort=" + best_match;
+}
+getLocation();
+
+</script>
+</body>
+</html>

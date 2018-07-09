@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<form action="">
+		<fieldset>
+			<legend>echo info</legend>
+			<p>
+				<label for="category">Category: </label>
+				<input type="text" id="category">
+				<input type="hidden" name="category">
+			</p>
+
+			<p>
+				<label for="location">Location: </label>
+				<input type="text" id="location" name="location">
+			</p>
+
+			<p>
+				<label for="sort">Sort: </label>
+				<input type="text" id="sort">
+				<input type="hidden" name="sort">
+			</p>
+		</fieldset>
+		<button type="submit">Submit</button>
+	</form>
+	
+	<script>
+
+		$(function() {
+
+			URLEcho = {
+
+				/**
+				 * URL的两部分组成的数组
+				 * path后的？为分界点。
+				 * @type {[type]}
+				 */
+				URLSplitArray: window.location.href.split("?"),
+
+				/**
+				 * 验证 URL 中是否有 query 部分。
+				 * @return {Boolean} [description]
+				 */
+				hasQueryPart: function() {
+					return this.URLSplitArray && this.URLSplitArray[1];
+				},
+
+				/**
+				 * 获取 query 部分分割成的数组
+				 * @return {[type]} [description]
+				 */
+				getQuerysArray: function() {
+
+					return this.hasQueryPart() ?
+								this.URLSplitArray[1].split('&') :
+								null;
+				},
+
+				/**
+				 * 回显 Category 信息
+				 * @return {[type]} [description]
+				 */
+				echoCategory: function() {
+
+					var textInput = $('#category');
+					var hiddenValueInput = textInput.next('input[type="hidden"]');
+
+					// 如果url中存在query信息
+					if ( this.getQuerysArray() ) {
+
+						// query 键值对
+						var map = this.getQuerysArray()[0].split('=');
+						var key = map[0];
+						var value = map[1];
+
+						// key = categories
+						if ( key == 'categories' ) {
+							textInput.val(key);
+							hiddenValueInput.val(value);
+						} else {
+
+							textInput.val('Services');
+							hiddenValueInput.val('');
+						}
+						
+
+					} else {
+
+						textInput.val('Services');
+						hiddenValueInput.val('');
+					} // if
+
+				}, // echoCategory
+
+				/**
+				 * 回显 Location 信息
+				 * @return {[type]} [description]
+				 */
+				echoLocation: function() {
+
+					var textInput = $('#location');
+					
+
+					// 如果url中存在query信息
+					if ( this.getQuerysArray() ) {
+
+						// query 键值对
+						var map = this.getQuerysArray()[1].split('=');
+						var key = map[0];
+						var value = map[1];
+
+						// key = categories
+						if ( key == 'location' ) {
+							textInput.val(value);
+						} else {
+
+							textInput.val('Locaion');
+						}
+						
+
+					} else {
+
+						textInput.val('Locaion');
+					} // if
+
+				}, // echoLocation
+
+				/**
+				 * 回显 Sort 信息
+				 * @return {[type]} [description]
+				 */
+				echoSort: function() {
+
+					var textInput = $('#sort');
+					var hiddenValueInput = textInput.next('input[type="hidden"]');
+
+					// 如果url中存在query信息
+					if ( this.getQuerysArray() ) {
+
+						// query 键值对
+						var map = this.getQuerysArray()[2].split('=');
+						var key = map[0];
+						var value = map[1];
+
+						// key = categories
+						if ( key == 'sort' ) {
+							textInput.val(key);
+							hiddenValueInput.val(value);
+						} else {
+
+							textInput.val('Sort By');
+							hiddenValueInput.val('');
+						}
+						
+
+					} else {
+
+						textInput.val('Sort By');
+						hiddenValueInput.val('');
+					} // if
+
+				} // echoSort
+			};
+
+			// 回显
+			URLEcho.echoCategory();
+			URLEcho.echoLocation();
+			URLEcho.echoSort();
+
+		});
+
+
+		
+
+		
+	</script>
+</body>
+</html>

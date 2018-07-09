@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<button class="click-button">点击我</button>
+	<input type="text" class="test-input">
+	<script>
+		$(function() {
+
+			
+
+			var a = {name: 'zhang', age: 13, gender: ['male', 'female']};
+			var c = {name: 'li'};
+			var b = {};
+
+			// $.extend(true, b,a);
+			$.extend(b,a, c);
+
+			console.log(b.name);
+
+			
+		});
+	</script>
+</body>
+</html>

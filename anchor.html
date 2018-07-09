@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Anchor Test</title>
+	<style>
+		body {
+			font-family: fantasy;
+			font-size: 14px;
+			/*background-color: #454545;*/
+			color: white;
+		}
+		
+		.first {
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+
+		.second {
+			width: 200px;
+			/*height: 3000px;*/
+			background: green;
+			
+			cursor: auto;
+		}
+		
+		/* 下面是 <a/> 标签的默认样式
+			a:link, a:visited {
+				color: blue;
+				text-decoration: underline;
+				cursor: auto;
+			}
+			
+			a:active {
+				color: red;
+			}
+			
+		*/
+
+
+
+
+	</style>
+
+
+</head>
+<body>
+	
+	<!--
+		这个实例主要是使用锚点来实现位置跳转
+		但是里面的标签可能需要使用最新的HTML5标签。
+		
+		锚点跳转到的地方是页面的最上方。
+		锚点的设置方式： 一个元素设置了id属性， 另一个<a/> 元素设置 href="#元素id属性的值"
+		
+		例如： <div class="first" id="one"></div>
+		
+		那么 <a href="#one">跳转</a> 就会跳转到 id 属性值为 "one" 的元素。元素显示的位置是页面顶端。
+	-->
+	
+	<div class="first" id=""></div>
+
+	<div class="second"></div>
+	
+	<!--浏览器中对于a链接标签是有自定义的颜色的，例如 Chrome 浏览器中使用 a:-webkit-any-link 
+	来给链接添加默认样式的， 而默认的样式其中一项就是包含默认的字体颜色。-->
+
+	<a href="#aaa">点击我跳到页面顶端</a>
+	
+	<a href="#aaa">点击我跳到页面底端</a>
+	
+</body>
+</html>

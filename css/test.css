@@ -1,0 +1,139 @@
+body {
+	background: #444;
+	margin: 0;
+	padding: 0;
+}
+
+table {
+   margin-top: 200px;
+   margin-left: auto;
+   margin-right: auto;
+   border-collapse: collapse;
+   
+}
+
+table td {
+ width: 35px;
+ height: 40px;
+ text-align: center;
+ border: 1px solid black;
+}
+
+table th {
+ border: 1px solid black;
+}
+
+/*.reply-container {
+	position: absolute;
+	display: none;
+	width: 375px;
+	padding: 10px;
+	border: 1px solid #9dc5ea;
+	border-radius: 3px;
+	background: #f2f2f2;
+}
+
+.reply-container:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: -14px;
+	right: 10px;
+	border: 8px solid transparent;
+	border-top-color: #e6e6e6;
+
+}
+
+.reply-container textarea {
+	border-color: #9dc5ea;
+	resize: none;
+	padding: 0 5px;
+}*/
+
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: "";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+.reply-list-container {
+	position: absolute;
+	display: none;
+	width: 400px;
+	padding: 10px;
+	padding-top: 18px;
+	border: 1px solid #9dc5ea;
+	border-radius: 1px;
+	background: white;
+	box-sizing: border-box;
+	font-size: 12px;
+}
+
+.reply-list-container .delete-list-container {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	right: 0;
+	top: -2px;
+	background: url("../img/reject160.png") no-repeat;
+	background-size: cover;
+}
+
+.reply-list-container:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: -14px;
+	right: 200px;
+	border: 8px solid transparent;
+	border-top-color: #e6e6e6;
+
+}
+
+.reply-list-container .reply-list-item {
+	position: relative;
+	margin-bottom: 10px;
+	padding: 0 10px;
+	padding-bottom: 10px;
+	background: #f2f2f2;
+	border: 1px solid #9dc5ea;
+	border-radius: 1px;
+}
+
+.reply-list-container .reply-list-item .reply-user {
+	float: left;
+	margin: 10px 0;
+}
+
+.reply-list-container .reply-list-item .reply-date {
+	float: right;
+	margin: 10px 7px;
+}
+
+.reply-list-container .reply-list-item .reply-content {
+	margin: 0;
+}
+
+.reply-list-container .reply-list-item .delete-item {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	right: 0;
+	top: -2px;
+	background: url("../img/reject160.png") no-repeat;
+	background-size: cover;
+}
+
+/* 当没有 reply list 的时候显示的容器。 */
+.reply-list-container .no-records {
+	height: 60px;
+	line-height: 60px;
+	border: 1px solid #9dc5ea;
+	border-radius: 1px;
+	text-align: center;
+}
