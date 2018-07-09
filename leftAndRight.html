@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>左右结构</title>
+	<style>
+		.clearfix:before,
+		.clearfix:after {
+			display: table;
+			content: "";
+		}
+
+		.clearfix:after {
+			clear: both;
+		}
+		.container {
+			background: blue;
+		}
+
+		.left {
+			float: left;
+		}
+
+		.right {
+			float: right;
+		}
+
+		.date {
+			display: inline-block;
+			width: 16px;
+			height: 16px;
+			background-image: url("css/images/datebox_arrow.png");
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="container clearfix">
+		<div class="left">
+			<span class="date"></span>
+			<span>Monday</span>
+		</div>
+		<div class="right">
+			<span class="date"></span>
+		</div>
+	</div>
+	<div class="container clearfix">
+		<div class="left">
+			<span class="date"></span>
+			<span>Yesterday</span>
+		</div>
+		<div class="right">
+			<span class="date"></span>
+		</div>
+	</div>
+</body>
+</html>

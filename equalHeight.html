@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高度相同</title>
+	<link rel="stylesheet" href="css/test.css">
+	<style>
+
+		
+	</style>
+</head>
+<body>
+	<textarea name="" id="text" cols="30" rows="3"></textarea>  
+	<input type="button" id="btn" value="测试测试" />  
+	<div id="show"></div> 
+
+	<script>
+		window.onload = function (){
+			document.getElementById("btn").onclick = function() {  
+			        var strContent = document.getElementById("text").value;  
+			        alert("处理前的strContent为\r\n"+strContent);  
+			        strContent = strContent.replace(/\r\n/g, '<br/>'); //IE9、FF、chrome  
+			        strContent = strContent.replace(/\n/g, '<br/>'); //IE7-8  
+			        strContent = strContent.replace(/\s/g, ' '); //空格处理  
+			        alert("转换之后的html代码为\r\n"+strContent);  
+			        document.getElementById("show").innerHTML = strContent;  
+			    };  
+		};
+	</script>
+</body>
+</html>

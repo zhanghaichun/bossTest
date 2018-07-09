@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择年月</title>
+	<link rel="stylesheet" href="css/easyui.css">
+	<script src="js/jquery-2.1.4.min.js"></script>
+	<script src="js/jquery.easyui.min.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<table>
+	    <tr>
+	       <td>年月1</td>
+	       <td>
+	         <input id="attYearMonth" editable="false" name="attYearMonth" class="easyui-datebox" style="width: 178px" />
+	      </td>
+	    </tr>
+
+	    <tr>
+	       <td>年月2</td>
+	       <td>
+	         <input id="attYearMonth2" editable="false" name="attYearMonth2" class="easyui-datebox" style="width: 178px" />
+	      </td>
+	    </tr>
+
+	    <tr>
+	       <td>年月3</td>
+	       <td>
+	         <input id="attYearMonth3" editable="false" name="attYearMonth3" class="easyui-datebox" style="width: 178px" />
+	      </td>
+	    </tr>
+	</table>
+	
+	<button class="pop-button">给我弹出值</button>
+	<script>
+		$(function() {
+			/*
+				easyui.css 的相同目录下必须放一个images文件夹，放着三张datebox插件需要用到的图片,
+				calendar_arrows.png, combo_arrow.png, datebox_arrow.png.
+
+				选择每一个文本框用到的都是该元素的id属性。
+				name属性的值是不能重复的。
+			*/
+
+			// 第一个年月选择框 (panel 宽度为 200).
+	        generateYearAndMonth('#attYearMonth', null, 200);
+
+	        // 第二个年月选择框 (panel 为默认宽度, 年月之间的分隔符为 '-').
+	        generateYearAndMonth('#attYearMonth2', '-');
+
+	        // 第三个年月选择框 (panel 宽度为 150, 年月之间的分隔符为 '#').
+	        generateYearAndMonth('#attYearMonth3', '#', 150	);
+
+	        // 点击按钮，控制台打印出第三个日期选择框的值。
+	        $('.pop-button').click(function() {
+	        	var value = $('input[name="attYearMonth3"]').val();
+	        	console.log(value);
+	        });
+		});
+
+		/**
+		 * 格式化日期。
+		 * @param  {[type]} date [description]
+		 * @return {[type]}      [description]
+		 */
+		function myformatter(date) {
+		    //获取年份
+		    var y = date.getFullYear();
+		    //获取月份
+		    var m = date.getMonth() + 1;
+		    return y + '-' + m;
+		}
+
+		/**
+		 * 封装生成日期控件，但是只会显示年份和月份。
+		 * 引用了 jquery.easyui 插件。
+		 * @param  {String} dataTarget 点击此target就会出现日期panel 面板。
+		 * @param  {String} separator  日期的分隔符号,默认为'/'.
+		 * @param  {Number} panelWidth 日期选择面板的宽度, 默认为180.
+		 * @return {[type]}            [description]
+		 */
+		function generateYearAndMonth(dataTarget, separator, panelWidth) {
+
+			//日期选择对象
+			var p = $(dataTarget).datebox('panel'), 
+			//日期选择对象中月份
+			tds = false, 
+			//显示月份层的触发控件
+			span = p.find('span.calendar-text');
+			var curr_time = new Date();
+
+			var separator = separator ? separator : '/';
+
+			//设置前当月
+			$(dataTarget).datebox("setValue", myformatter(curr_time));
+
+		   $(dataTarget).datebox({
+				//显示日期选择对象后再触发弹出月份层的事件，初始化时没有生成月份层
+				onShowPanel: function () {
+					//触发click事件弹出月份层
+					span.trigger('click'); 
+		          	if (!tds)
+		            //延时触发获取月份对象，因为上面的事件触发和对象生成有时间间隔
+		            setTimeout(function() { 
+		                tds = p.find('div.calendar-menu-month-inner td');
+		                tds.click(function(e) {
+		                   //禁止冒泡执行easyui给月份绑定的事件
+		                   e.stopPropagation(); 
+		                   //得到年份
+		                   var year = /\d{4}/.exec(span.html())[0] ,
+		                   //月份
+		                   //之前是这样的month = parseInt($(this).attr('abbr'), 10) + 1; 
+		                   month = parseInt($(this).attr('abbr'), 10);  
+
+							//隐藏日期对象                     
+							$(dataTarget).datebox('hidePanel') 
+							//设置日期的值
+							.datebox('setValue', year + separator + month); 
+		                });
+		            }, 0);
+		        },
+	            //配置parser，返回选择的日期
+	            parser: function (s) {
+	                if (!s) return new Date();
+	                var arr = s.split(separator);
+	                return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);
+	            },
+	            //配置formatter，只返回年月 之前是这样的d.getFullYear() + '-' +(d.getMonth()); 
+	            formatter: function (d) { 
+	                var currentMonth = (d.getMonth()+1);
+	                var currentMonthStr = currentMonth < 10 ? ('0' + currentMonth) : (currentMonth + '');
+	                return d.getFullYear() + separator + currentMonthStr; 
+	            },
+	            // 配置选择日期面板的宽度。
+	            panelWidth: panelWidth ? panelWidth : 180
+
+        	});
+
+
+		   
+		}
+
+
+	</script>
+</body>
+</html>
