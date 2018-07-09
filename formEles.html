@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>表单元素的使用</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<section>
+			<h2>个人信息</h2>
+			<form action="" method="post">
+				<!--可以使用div元素对表弟那元素进行分组-->
+				<fieldset id="">
+					<legend>Enter your personal information:</legend>
+					
+					<label for="username">Name：</label>
+					<input type="text" name="username" id="username" placeholder="Enter the name">
+					
+					<label for="age">Age：</label>
+					<input type="text" name="age" id="age" placeholder="Enter the age">
+				</fieldset>
+				<input type="submit" value="Submit"/>
+				<input type="reset" value="Reset"/>
+			</form>
+		</section>
+	</body>
+</html>
