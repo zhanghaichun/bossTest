@@ -88,6 +88,8 @@
 						width: 970px;
 						height: 345px;
 				}
+				
+				
         
 				
     </style>
@@ -100,6 +102,21 @@
 			对一些元素使用的演示
 			div, p, a, ol, ul, li, 
 			文档分节元素： section, article, header, footer, aside
+	 -->
+	 
+	 <!--/* 标签属性 */
+			属性只能应用于开始标签上，具有名称和值两个部分。
+			
+			标签属性分为全局属性和专有属性两类：
+			
+			全局属性是如： id, class, style, title, hidden这样的属性， 对于多有的标签都是适用的。
+			专有属性例如： href, type, value 属性， 只对于某些特定的元素有用。
+			
+			除了专有属性和全局属性之外， 还有一种属性是自定义属性
+			这种属性必须以 data- 开头， 然后再 js 中可以使用 Dataset API 来获取。
+			Dataset API 文档地址：
+			https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
+			自定义的属性有一个作用就是在不改变元素外观的情况下提供更多的信息。
 	 -->
 	 <header class="page-header">
 		 <nav class="page-navs">
@@ -126,6 +143,7 @@
 			</li>
 		 	<li>
 				<span>后端</span>
+				<!--<ul hidden="hidden">-->
 				<ul>
 					<li><span>Java</span></li>
 					<li><span>Spring</span></li>
@@ -146,7 +164,19 @@
 		 <div>
 		 	文档分节元素构成了语义和呈现分离实践的重要基础。
 		 </div>
+		 
+		 <summary id="summary" data-firstname="haichun" data-lastname="zhang">
+			 Created by haichun zhang
+		 </summary>
 	 </footer>
+	 
+	 <script type="text/javascript">
+	 	var summary = document.getElementById('summary');
+		
+		summary.dataset.firstname = 'xia';
+		summary.dataset = {age: 17}; // 这段代码是不起作用的, 因为 dataset 不可以直接进行写操作。 
+		console.log(summary.dataset);
+	 </script>
 </body>
 </html>
 
