@@ -4,20 +4,87 @@
 		<meta charset="utf-8" />
 		<title>表单元素的使用</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			
+			.page-section {
+				width: 900px;
+			}
+			input[type='text'] {
+				height: 30px;
+				font-size: 1em;
+				padding-left: 5px;
+				border-radius: 4px;
+				border: 1px solid #AAAAAA;
+			}
+		</style>
 	</head>
 	<body>
-		<section>
+		<section class="page-section">
 			<h2>个人信息</h2>
-			<form action="" method="post">
-				<!--可以使用div元素对表弟那元素进行分组-->
-				<fieldset id="">
+			<!--
+				表单是 HTML 中获取用户输入的一种手段。
+				form 元素告诉浏览器处理的是 HTML 表单。
+				
+				input 元素用来收集用户数据。
+			-->
+			<form action="server.php" method="post" target="_blank">
+				<!--可以使用div元素对表单元素进行分组，
+				
+				表单元素中有一些属性是布尔值属性， 这些属性值需要在标签内写出属性名即可， 不需要使用属性值
+				例如： autofocus, disabled, selected, checked
+				
+				placeholder, autocomplete, autofocus 属性应用于类似于 text 类型的 input 表单元素。-->
+				<fieldset id="nameAndAge">
+				<!--<fieldset id="nameAndAge" disabled>-->
 					<legend>Enter your personal information:</legend>
 					
-					<label for="username">Name：</label>
-					<input type="text" name="username" id="username" placeholder="Enter the name">
+					<p>
+						<label for="username">Name: </label>
+						<input type="text" name="username" id="username" autocomplete="off" placeholder="Enter your name">
+					</p>
 					
-					<label for="age">Age：</label>
-					<input type="text" name="age" id="age" placeholder="Enter the age">
+					<p>
+						<label for="age">Age: </label>
+						<input type="text" name="age" id="age" placeholder="Enter your age">
+						<!--<input type="text" name="age" id="age" disabled placeholder="Enter your age">-->
+					</p>
+						
+					<p>
+						<label for="address">Address: </label>
+						<input type="text" name="address" id="address" placeholder="Enter your address">
+					</p>
+					
+					
+					<div>
+						<span>Gender: </span>
+						
+						<label for="male">Male</label>
+						<input type="radio" name="gender" id="male" checked value="male">
+						
+						<label for="female">Female</label>
+						<input type="radio" name="gender" id="female" value="female">
+						
+						<p>
+							<label for="fav">Favorite programming language: </label>
+							<select id="fav" name="fav">
+								<option value="html" >HTML</option>
+								<option value="css" selected>CSS</option>
+								<option value="javascript">JavaScript</option>
+								<option value="java">Java</option>
+							</select>
+						</p>
+						
+						<p>
+							<label for="question">Do you like java?</label>
+							<!--<input type="checkbox" id="question" name="question" value="yes">-->
+							<input type="checkbox" id="question" name="question">
+							<!--复选框是表单元素中比较特殊的一个， 不需要设置value值，
+							假如设置了value值的情况下，如果复选框勾选， 那么传递到后台的值就是这个复选框的value属性值，
+							如果不勾选的话， 后台获取这个值的时候就会报错。所以一般的情况下，不设置input checkbox 的 value 属性值。
+							
+							如果不设置 value 属性值， 勾选之后，传递到后台的值是 on, 如果不勾选则不会向后台发送数据。-->
+						</p>
+					</div>
 				</fieldset>
 				<input type="submit" value="Submit"/>
 				<input type="reset" value="Reset"/>
