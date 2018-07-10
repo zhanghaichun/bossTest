@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盒模型margin属性学习</title>
+	<link rel="stylesheet" href="css/test.css">
+	<link rel="stylesheet" href="css/marginProp.css">
+</head>
+<body>
+	<!--
+		一开始给元素设置的高度和宽度是指 content 的高度和宽度，
+		content + padding + border 一起称作 clientWidth. clientHeight
+		加上了 margin 的数值之后可以被称作 outerWidth
+		
+		首先 margin 在一些前提条件下可以改变元素的可视尺寸(只能修改clientWidth属性的值。)
+		前提1： 元素是没有设置width/height属性的普通 block 水平元素。
+			诸如： position: fixed/absolute,  float 元素， inline元素， table-cell 元素。。。
+			
+		margin 属性设置四个值的时候： margin: 上， 右， 下， 左
+		margin 属性是两个值的时候：margin: (上下)， (左右)
+		
+	-->
+	
+	<section class="first-section">Lorem ipsum dolor sit amet.</section>
+	
+	<!--  margin 属性可以改变元素的可视宽度应用场景1：
+		浮动元素中文字对齐
+	-->
+	
+	<section class="float-section">
+		<img src="img/browers/firefox.jpg" >
+		<header><h1>Mozilla Firefox</h1></header>
+		<section class="firefox-article-section">
+				<p>
+					Mozilla Firefox，中文俗称“火狐”（正式缩写为Fx或fx，非正式缩写为MF），是一个自由及开放源代码的网页浏览器，使用
+					Gecko排版引擎，支持多种操作系统，如Windows、Mac OS X及GNU/Linux等。该浏览器提供了两种版本，普通版和
+					ESR（Extended Support Release，延长支持）版，ESR版本是 Mozilla 专门为那些无法或不愿每隔六周就升级一次的企业打
+					造。Firefox ESR 版的升级周期为 42 周，而普通 Firefox 的升级周期为 6 周。
+				</p>
+				
+				<p>
+					根据2013年8月浏览器统计数据，Firefox在全球网页浏览器市占率76%至81%，用户数在各网页浏览器中排名第三，全球估
+					计有6450万位用户。在印度尼西亚、德国和波兰的占有率最高，分别为97.84%、86.41%和84.31%。
+				</p>
+				
+				<p>
+					自Firefox 29起，浏览器界面有很大程度改变。
+				</p>
+				
+				<p>
+					由于该浏览器开放了源代码，因此还有一些第三方编译版供使用。如pcxFirefox，苍月浏览器，tete009等.
+				</p>
+				
+				<p>
+					根据英国防病毒公司Sophos的最新调查数据显示，Firefox连续三年成为互联网用户最受信赖的浏览器
+				</p>
+		</section>
+	</section>
+	
+	<!--margin 属性与元素的占据尺寸
+		可以实现上下留白的效果。
+	1, block 水平元素或者是 inline-block 元素都可以使用
+	2，与元素是否设置了 width/height 属性值无关
+	3， 适用于水平方向和垂直方向-->
+	
+	<!--margin 属性百分比值计算的时候都是相对于父容器的宽度来计算的。
+	padding属性的计算方式也是这样，
+	这是一个很有意思的特性。因为如果设置一个容器的高度是50%的时候， 它会按照父容器的高度来计算，
+	或者是设置一个定位元素的top值的时候， 百分比值也会根据父元素的高度来计算，
+	
+	但是设置margin-top 就不一样了， 它会根据父元素的宽度来计算。
+	
+	但是如果元素是设置了 position: absolute 的， 那么margin-top 的百分比值就会根据的是第一个定位
+	元素的宽度来计算。
+	
+	max-height 属性只能设置内容高度。
+	
+	-->
+	<section class="outer-width">
+		<img src="img/browers/chrome.jpg" >
+	</section>
+	
+	<!--
+	margin 重叠， 发生重叠现象必须满足以下两点其一：
+		block元素， (非float元素， 非定位元素)
+		只发生在垂直方向。margin-top, margin-bottom
+		
+		重叠发生的两种情况， 父元素与子元素, 相邻的兄弟元素。
+	-->
+	
+	<!--父元素和子元素-->
+	<section class="father">
+		<div class="son"></div>
+	</section>
+	
+	<!--兄弟元素之间-->
+	<div class="con1"></div>
+	<div class="BFCBlock">
+		<div class="con2"></div>
+	</div >
+	
+	
+	
+	
+	
+	
+
+</body>
+</html>

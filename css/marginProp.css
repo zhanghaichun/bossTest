@@ -1,0 +1,63 @@
+body {
+	color: white;
+	padding-bottom: 100px;
+}
+.first-section {
+	height: 30px;
+	background-color: #0000FF;
+	
+	/*margin: 0 30px;*/
+	/*margin: 0 -80px;*/
+}
+
+.float-section img {
+	float: left;
+}
+
+.firefox-article-section {
+	margin-left: 130px;
+}
+
+.outer-width {
+	width: 900px;
+	background-color: #C0C0C0;
+}
+
+.outer-width img {
+	margin-bottom: 30px;
+	
+	margin-left: 10%;
+}
+
+.father {
+	width: 300px; 
+	height: 200px; 
+	margin-top: 30px; 
+	background-color: #122B40;
+	/*border: 1px solid #0000FF;*/
+}
+
+.father .son {
+	width: 100px; 
+	height: 50px;
+	margin-top: 30px;
+	background-color: olive;
+}
+
+.con1, .con2 {
+	width: 100px;
+	height: 100px;
+	background-color: #00EE00;
+}
+
+.BFCBlock {
+	overflow: hidden;
+}
+
+.con1 {
+	margin-bottom: 20px;
+}
+
+.con2 {
+	margin-top: 20px;
+}
